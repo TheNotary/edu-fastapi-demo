@@ -27,13 +27,18 @@ Invoke the app's endpoints:
 # Simple type validated endpoint
 curl http://127.0.0.1:8000/?name=john
 
-curl -XPOST -H "Content-Type: application/json" http://127.0.0.1:8000/ml -d '{"input_data": "This is a pretty neat FastAPI demo."}'
-
-
-
-curl localhost:8000 -d '{}'
+$ curl -XPOST -H "Content-Type: application/json" http://127.0.0.1:8000/ml \
+  -d '{"input_data": "This is a pretty neat FastAPI demo that uses an ML model to perform the task of sentiment analysis."}'
+{"label":"NEGATIVE","score":0.7003686428070068,"input_data":"This is a pretty neat FastAPI demo that uses an ML model to perform the task of sentiment analysis."}
 ```
 
+
+## Docker stuff
+
+```
+docker build . -t edu-fastapi-demo
+docker run -it -p 8000:8000 edu-fastapi-demo
+```
 
 
 
