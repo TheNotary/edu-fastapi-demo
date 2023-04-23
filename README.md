@@ -24,11 +24,9 @@ uvicorn app:app --reload --host 0.0.0.0 --port 8000
 
 Invoke the app's endpoints:
 ```
-# Simple type validated endpoint
-curl http://127.0.0.1:8000/?name=john
-
+$ MSG='This is a pretty neat FastAPI demo that uses an ML model to perform the task of sentiment analysis.'
 $ curl -XPOST -H "Content-Type: application/json" http://127.0.0.1:8000/ml \
-  -d '{"input_data": "This is a pretty neat FastAPI demo that uses an ML model to perform the task of sentiment analysis."}'
+  -d "{\"input_data\": \"${MSG}\"}"
 {"label":"NEGATIVE","score":0.7003686428070068,"input_data":"This is a pretty neat FastAPI demo that uses an ML model to perform the task of sentiment analysis."}
 ```
 
@@ -41,9 +39,11 @@ docker run -it -p 8000:8000 edu-fastapi-demo
 ```
 
 
-
 ## References
 
-- Hugging Face transformer package manager for ML models: https://www.youtube.com/watch?v=QEaBAZQCtwE
+- Intro to HuggingFace's Transformer's package manager/ framework for working with ML models: https://www.youtube.com/watch?v=QEaBAZQCtwE
 - Transformers docs: https://huggingface.co/docs/transformers/installation
-- I think ChatGPT-4 stubbed out the FastAPI syntax per: Write a hello world application in FastAPI that shows off it's inbuilt data validation.
+- Online book on FastAPI: https://fastapi.tiangolo.com/tutorial/first-steps/
+- Handy FastAPI prompts (ChatGPT-4):
+  - Write a hello world application in FastAPI that shows off it's inbuilt data validation.
+  - How can I use pydantic and FastAPI to build an endpoint that will respond to the below curl with a validation error that input_data was not long enough.  `curl -XPOST 127.0.0.1:8000/ml -d '{"input_data": ""}'`
