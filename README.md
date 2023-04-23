@@ -25,9 +25,9 @@ uvicorn app:app --reload --host 0.0.0.0 --port 8000
 Invoke the app's endpoints:
 ```
 # Simple type validated endpoint
-http://127.0.0.1:8000/?name=john
+curl http://127.0.0.1:8000/?name=john
 
-http://127.0.0.1:8000/ml?name=john
+curl -XPOST http://127.0.0.1:8000/ml -d '{"input_data": {"phrase": "This is a pretty neat FastAPI demo."}}'
 
 
 
