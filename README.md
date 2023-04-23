@@ -27,7 +27,7 @@ Invoke the app's endpoints:
 # Simple type validated endpoint
 curl http://127.0.0.1:8000/?name=john
 
-curl -XPOST http://127.0.0.1:8000/ml -d '{"input_data": {"phrase": "This is a pretty neat FastAPI demo."}}'
+curl -XPOST -H "Content-Type: application/json" http://127.0.0.1:8000/ml -d '{"input_data": "This is a pretty neat FastAPI demo."}'
 
 
 
