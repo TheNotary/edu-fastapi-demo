@@ -21,11 +21,20 @@ Run the server:
 uvicorn app:app --reload --host 0.0.0.0 --port 8000
 ```
 
-Send some phrase to the server to check it's sentiment:
 
+Invoke the app's endpoints:
 ```
+# Simple type validated endpoint
+http://127.0.0.1:8000/?name=john
+
+http://127.0.0.1:8000/ml?name=john
+
+
+
 curl localhost:8000 -d '{}'
 ```
+
+
 
 
 ## References
