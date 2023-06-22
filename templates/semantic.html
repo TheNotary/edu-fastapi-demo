@@ -1,0 +1,29 @@
+{% set MODULE_NAME = request.url.path.lstrip('/') %}
+
+{% extends "base.html" %}
+
+{% block title %}
+Semantic Analysis Via Huggingface
+{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="/static/{{ MODULE_NAME }}/custom.css">
+{% endblock %}
+
+{% block extra_js %}
+<script src="/static/{{ MODULE_NAME }}/index.js"></script>
+{% endblock %}
+
+{% block content %}
+<section>
+  <h2>Submit your text for sentiment analysis</h2>
+  <form id="jsonForm">
+      <label for="input_data">Text:</label>
+      <textarea id="input_data" name="input_data">hi there, you are not ugly.</textarea>
+      <div>
+          <input type="submit" value="Submit">
+      </div>
+  </form>
+  <div id="result"></div>
+</section>
+{% endblock %}

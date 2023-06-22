@@ -3,15 +3,14 @@
 <head>
     <title>{% block title %}{% endblock %}</title>
     <link rel="stylesheet" type="text/css" href="/static/styles.css">
-    <link rel="stylesheet" type="text/css" href="static/basics/page1.css">
-
+    {% block extra_css %}{% endblock %}
 </head>
 <body>
     <nav>
       <ul>
           <li><a href="/">Home</a></li>
           <li><a href="/basics">Basics</a></li>
-          <li><a href="/static/semantic/index.html">Semantic Analysis</a></li>
+          <li><a href="/semantic">Semantic Analysis</a></li>
       </ul>
     </nav>
     <main>
@@ -19,6 +18,7 @@
     </main>
 </body>
 
+{% block extra_js %}{% endblock %}
 <script>
   document.querySelectorAll('nav a').forEach(link => {
       if (link.href === window.location.href) {
