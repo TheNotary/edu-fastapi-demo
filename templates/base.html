@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" type="text/css" href="/static/styles.css">
+    <link rel="stylesheet" type="text/css" href="static/basics/page1.css">
+
+</head>
+<body>
+    <nav>
+      <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/basics">Basics</a></li>
+          <li><a href="/static/semantic/index.html">Semantic Analysis</a></li>
+      </ul>
+    </nav>
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+</body>
+
+<script>
+  document.querySelectorAll('nav a').forEach(link => {
+      if (link.href === window.location.href) {
+          link.className = 'current';
+      }
+  });
+</script>
+</html>

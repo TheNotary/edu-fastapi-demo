@@ -1,6 +1,7 @@
-from fastapi import FastAPI, Query
+from fastapi import FastAPI, Query, Request
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import RedirectResponse
+from fastapi.templating import Jinja2Templates
 from transformers import pipeline
 from pydantic import BaseModel, Field
 
@@ -10,9 +11,15 @@ app = FastAPI()
 
 app.mount("/static", StaticFiles(directory="./static"), name="static")
 
+templates = Jinja2Templates(directory="templates")
+
 @app.get("/")
-def read_root():
-    return RedirectResponse(url='/static/index.html')
+async def read_root(request: Request):
+    return templates.TemplateResponse("home.html", {"request": request})
+
+@app.get("/basics")
+async def basics(request: Request):
+    return templates.TemplateResponse("basics.html", {"request": request})
 
 @app.get("/hello")
 async def hello_world(name: str = Query(..., min_length=1, max_length=50, description="Your name")):
