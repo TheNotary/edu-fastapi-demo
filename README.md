@@ -8,6 +8,8 @@ This is a quick demo to see how leveraging a simple ML pipeline and exposing it 
 ```
 python -m venv .env
 source .env/bin/activate
+# For window use this instead :)
+# .\.env\Scripts\activate
 
 pip install -r requirements.txt
 ```
@@ -18,9 +20,8 @@ pip install -r requirements.txt
 Run the server:
 
 ```
-uvicorn app:app --reload --host 0.0.0.0 --port 8000
+uvicorn app:app --reload --host 192.168.1.28 --port 8000
 ```
-
 
 Invoke the app's endpoints:
 ```
@@ -47,3 +48,4 @@ docker run -it -p 8000:8000 edu-fastapi-demo
 - Handy FastAPI prompts (ChatGPT-4):
   - Write a hello world application in FastAPI that shows off it's inbuilt data validation.
   - How can I use pydantic and FastAPI to build an endpoint that will respond to the below curl with a validation error that input_data was not long enough.  `curl -XPOST 127.0.0.1:8000/ml -d '{"input_data": ""}'`
+  - https://chat.openai.com/share/4ae644fe-0168-4ff5-8179-b3fd2f56e18c
