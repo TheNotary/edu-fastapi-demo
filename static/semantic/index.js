@@ -4,7 +4,7 @@ document.getElementById('jsonForm').addEventListener('submit', function(event) {
     var input_data = document.getElementById('input_data').value;
 
     var xhr = new XMLHttpRequest();
-    xhr.open("POST", '/ml', true);
+    xhr.open("POST", '/semantic', true);
     xhr.setRequestHeader('Content-Type', 'application/json');
     xhr.onload = function () {
         if (xhr.readyState == 4 && xhr.status == 200) {

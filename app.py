@@ -4,12 +4,9 @@ from fastapi.responses import RedirectResponse
 from transformers import pipeline
 from pydantic import BaseModel, Field
 
-model_name = 'distilbert-base-uncased-finetuned-sst-2-english'
+from static.semantic.semantic_router import router as semantic_router
 
 app = FastAPI()
-
-class InputData(BaseModel):
-    input_data: str = Field(..., min_length=1, description="Input data must be at least 1 character long")
 
 app.mount("/static", StaticFiles(directory="./static"), name="static")
 
@@ -21,16 +18,11 @@ def read_root():
 async def hello_world(name: str = Query(..., min_length=1, max_length=50, description="Your name")):
     return {"message": f"Hello, {name}!"}
 
-@app.post("/ml")
-async def ml(json: InputData):
-    output = pipeline(task = 'sentiment-analysis',
-                      model = model_name)(json.input_data)[0]
-    output['input_data'] = json.input_data
-    return output
+app.include_router(semantic_router, prefix="/semantic")
 
-@app.post("/gptj")
-async def ml(json: InputData):
-    output = pipeline(task = 'sentiment-analysis',
-                      model = model_name)(json.input_data)[0]
-    output['input_data'] = json.input_data
-    return output
+# @app.post("/gptj")
+# async def ml(json: InputData):
+#     output = pipeline(task = 'sentiment-analysis',
+#                       model = model_name)(json.input_data)[0]
+#     output['input_data'] = json.input_data
+#     return output
