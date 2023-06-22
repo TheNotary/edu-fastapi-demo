@@ -7,7 +7,7 @@ from pydantic import BaseModel, Field
 from gpt4all import GPT4All
 import pdb
 
-templates = Jinja2Templates(directory="static/gpt4all")
+templates = Jinja2Templates(directory="templates")
 router = APIRouter()
 
 class InputData(BaseModel):
@@ -16,19 +16,16 @@ class InputData(BaseModel):
 gptj = GPT4All("ggml-gpt4all-j-v1.3-groovy")
 
 
-
 @router.get("")
-async def semantic(request: Request):
-    # pdb.set_trace() # for debugging
-    return templates.TemplateResponse("index.html", {
+async def gpt4all(request: Request):
+    return templates.TemplateResponse("gpt4all.html", {
         "request": request })
 
 @router.post("")
-async def semantic(json: InputData):
-    my_input = json.input_data
+async def gpt4all(json: InputData):
+    user_input = json.input_data
 
-    messages = [{"role": "user", "content": "Name 3 colors"}]
+    messages = [{ "role": "user", "content": user_input }]
     resp = gptj.chat_completion(messages)
 
-    pdb.set_trace()
-    return "output"
+    return resp['choices'][0]['message']['content']
