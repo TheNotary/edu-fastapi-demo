@@ -1,17 +1,7 @@
-{% set MODULE_NAME = request.url.path.lstrip('/') %}
-
 {% extends "base.html" %}
 
 {% block title %}
 Semantic Analysis Via Huggingface
-{% endblock %}
-
-{% block extra_css %}
-<link rel="stylesheet" href="/static/{{ MODULE_NAME }}/custom.css">
-{% endblock %}
-
-{% block extra_js %}
-<script src="/static/{{ MODULE_NAME }}/index.js"></script>
 {% endblock %}
 
 {% block content %}

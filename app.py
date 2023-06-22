@@ -6,6 +6,7 @@ from transformers import pipeline
 from pydantic import BaseModel, Field
 
 from static.semantic.semantic_router import router as semantic_router
+from static.gpt4all.gpt4all_router import router as gpt4all_router
 
 app = FastAPI()
 
@@ -26,6 +27,7 @@ async def hello_world(name: str = Query(..., min_length=1, max_length=50, descri
     return {"message": f"Hello, {name}!"}
 
 app.include_router(semantic_router, prefix="/semantic")
+app.include_router(gpt4all_router, prefix="/gpt4all")
 
 # @app.post("/gptj")
 # async def ml(json: InputData):

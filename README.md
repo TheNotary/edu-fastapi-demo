@@ -44,6 +44,7 @@ docker run -it -p 8000:8000 edu-fastapi-demo
 
 - Intro to HuggingFace's Transformer's package manager/ framework for working with ML models: https://www.youtube.com/watch?v=QEaBAZQCtwE
 - Transformers docs: https://huggingface.co/docs/transformers/installation
+- gpt4all: https://github.com/nomic-ai/gpt4all/tree/main/gpt4all-bindings/python
 - Online book on FastAPI: https://fastapi.tiangolo.com/tutorial/first-steps/
 - Handy FastAPI prompts (ChatGPT-4):
   - Write a hello world application in FastAPI that shows off it's inbuilt data validation.
