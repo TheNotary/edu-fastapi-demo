@@ -7,6 +7,7 @@ from pydantic import BaseModel, Field
 
 from static.semantic.semantic_router import router as semantic_router
 from static.gpt4all.gpt4all_router import router as gpt4all_router
+from static.wizard_lm.wizard_lm_router import router as wizard_lm_router
 
 app = FastAPI()
 
@@ -28,6 +29,7 @@ async def hello_world(name: str = Query(..., min_length=1, max_length=50, descri
 
 app.include_router(semantic_router, prefix="/semantic")
 app.include_router(gpt4all_router, prefix="/gpt4all")
+app.include_router(wizard_lm_router, prefix="/wizard_lm")
 
 # @app.post("/gptj")
 # async def ml(json: InputData):

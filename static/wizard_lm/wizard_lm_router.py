@@ -1,10 +1,8 @@
 from fastapi import APIRouter, Request
-from fastapi.staticfiles import StaticFiles
-from fastapi.responses import RedirectResponse
 from fastapi.templating import Jinja2Templates
-from transformers import pipeline
 from pydantic import BaseModel, Field
-from gpt4all import GPT4All
+from llama_cpp import Llama
+
 import pdb
 
 templates = Jinja2Templates(directory="templates")
@@ -13,8 +11,9 @@ router = APIRouter()
 class InputData(BaseModel):
     input_data: str = Field(..., min_length=1, description="Input data must be at least 1 character long")
 
-gptj = None
-
+llm = Llama(model_path="./wizardlm-30b-uncensored.ggmlv3.q6_K.bin")
+output = llm("Q: Name the planets in the solar system? A: ", max_tokens=64, stop=["Q:", "\n"], echo=True)
+print(output)
 
 @router.get("")
 async def gpt4all(request: Request):
@@ -23,9 +22,6 @@ async def gpt4all(request: Request):
 
 @router.post("")
 async def gpt4all(json: InputData):
-    if gptj == None:
-      gptj = GPT4All("ggml-gpt4all-j-v1.3-groovy")
-
     user_input = json.input_data
 
     messages = [{ "role": "user", "content": user_input }]
