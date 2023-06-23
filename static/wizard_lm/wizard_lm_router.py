@@ -5,26 +5,27 @@ from llama_cpp import Llama
 
 import pdb
 
+llm = None
 templates = Jinja2Templates(directory="templates")
 router = APIRouter()
 
 class InputData(BaseModel):
     input_data: str = Field(..., min_length=1, description="Input data must be at least 1 character long")
 
-llm = Llama(model_path="./wizardlm-30b-uncensored.ggmlv3.q6_K.bin")
-output = llm("Q: Name the planets in the solar system? A: ", max_tokens=64, stop=["Q:", "\n"], echo=True)
-print(output)
 
 @router.get("")
-async def gpt4all(request: Request):
-    return templates.TemplateResponse("gpt4all.html", {
+async def wizard_lm(request: Request):
+    return templates.TemplateResponse("wizard_lm.html", {
         "request": request })
 
 @router.post("")
-async def gpt4all(json: InputData):
-    user_input = json.input_data
+async def wizard_lm(json: InputData):
+    global llm
+    if llm == None:
+      llm = Llama(model_path="./wizardlm-30b-uncensored.ggmlv3.q6_K.bin")
 
-    messages = [{ "role": "user", "content": user_input }]
-    resp = gptj.chat_completion(messages)
+    user_input = json.input_data # "Q: Name the planets in the solar system? A: "
 
-    return resp['choices'][0]['message']['content']
+    resp = llm(user_input, max_tokens=512, stop=["Q:", "\n"], echo=True)
+
+    return resp['choices'][0]['text']

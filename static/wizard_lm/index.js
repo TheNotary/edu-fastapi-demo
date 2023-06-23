@@ -16,6 +16,7 @@ document.getElementById('jsonForm').addEventListener('submit', function(e) {
     return response.json();
   })
   .then(function(data) {
+    debugger;
     document.getElementById('result').innerText = data;
   })
   .catch(function(error) {

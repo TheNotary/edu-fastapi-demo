@@ -1,0 +1,15 @@
+section {
+  margin: 1em;
+}
+
+textarea {
+  width: 100%;
+  min-height: 200px;
+}
+
+#result {
+  margin-top: 1em;
+  padding: 1em;
+  border: 1px solid #ccc;
+  background-color: #f8f8f8;
+}
