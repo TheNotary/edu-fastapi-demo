@@ -15,6 +15,13 @@ pip install -r requirements.txt
 ```
 
 
+## Download any Models
+
+```
+wget https://huggingface.co/TheBloke/WizardLM-30B-Uncensored-GGML/resolve/main/wizardlm-30b-uncensored.ggmlv3.q6_K.bin
+```
+
+
 ## Run Locally
 
 Run the server:
