@@ -5,7 +5,7 @@ from fastapi.templating import Jinja2Templates
 from transformers import pipeline
 from pydantic import BaseModel, Field
 
-from static.semantic.semantic_router import router as semantic_router
+from static.sentiment.sentiment_router import router as sentiment_router
 from static.gpt4all.gpt4all_router import router as gpt4all_router
 from static.wizard_lm.wizard_lm_router import router as wizard_lm_router
 
@@ -27,7 +27,7 @@ async def basics(request: Request):
 async def hello_world(name: str = Query(..., min_length=1, max_length=50, description="Your name")):
     return {"message": f"Hello, {name}!"}
 
-app.include_router(semantic_router, prefix="/semantic")
+app.include_router(sentiment_router, prefix="/sentiment")
 app.include_router(gpt4all_router, prefix="/gpt4all")
 app.include_router(wizard_lm_router, prefix="/wizard_lm")
 

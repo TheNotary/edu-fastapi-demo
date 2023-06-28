@@ -17,13 +17,13 @@ class InputData(BaseModel):
 templates = Jinja2Templates(directory="templates")
 
 @router.get("")
-async def semantic(request: Request):
+async def sentiment(request: Request):
     # pdb.set_trace() # for debugging
-    return templates.TemplateResponse("semantic.html", {
+    return templates.TemplateResponse("sentiment.html", {
         "request": request })
 
 @router.post("")
-async def semantic(json: InputData):
+async def sentiment(json: InputData):
     output = pipeline(task = 'sentiment-analysis',
                       model = model_name)(json.input_data)[0]
     output['input_data'] = json.input_data
