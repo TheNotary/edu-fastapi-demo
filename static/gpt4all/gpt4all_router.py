@@ -23,6 +23,7 @@ async def gpt4all(request: Request):
 
 @router.post("")
 async def gpt4all(json: InputData):
+    global gptj
     if gptj == None:
       gptj = GPT4All("ggml-gpt4all-j-v1.3-groovy")
 
