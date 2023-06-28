@@ -6,6 +6,12 @@ from transformers import pipeline
 from pydantic import BaseModel, Field
 import pdb
 
+'''
+Sentiment Router
+This file is basically my "controller" (MVC) for handling requests
+related to this area of study.
+'''
+
 router = APIRouter()
 
 model_name = 'distilbert-base-uncased-finetuned-sst-2-english'

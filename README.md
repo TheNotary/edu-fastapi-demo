@@ -1,6 +1,25 @@
 # FastAPI Demo
 
-This is a quick demo to see how leveraging a simple ML pipeline and exposing it over a web API works.
+This is an education demo showing how to leverage various datascience projects.  Everything is exposed over a pythong web API framework called FastAPI.
+
+
+### File Structure
+
+This project contains demonstration code for various aspects of datascience.  To keep things from getting confusing, each concept is modularized; each concept gets it's own folder where *most* of the related code lives.  The below diagram shows the important files if you were concerned with how the 'basics' demo works (`/basics`).
+
+```bash
+├── static/basics/
+│      ├── sentiment_router.py # controller & misc. code for doing the demo
+│      ├── custom.css          # styling for the demo
+│      └── index.js            # javascript involved in the demo
+│
+├── templates/
+│      ├── _base.html    # The template that all pages follow
+│      ├── _navbar.html  # The navbar for the site
+│      └── basics.html   # HTML code for the index page of the demo
+│
+└── app.py               # Entrypoint for the program
+```
 
 
 ## Setup for local development
