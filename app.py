@@ -1,32 +1,28 @@
 from fastapi import FastAPI, Query, Request
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import RedirectResponse
-from fastapi.templating import Jinja2Templates
 from transformers import pipeline
 from pydantic import BaseModel, Field
 
+from helpers.jinja_helpers import build_templates
+
+# Module Controllers
 from static.sentiment.sentiment_router import router as sentiment_router
 from static.gpt4all.gpt4all_router import router as gpt4all_router
 from static.wizard_lm.wizard_lm_router import router as wizard_lm_router
+from static.basics.basics_router import router as basics_router
 
 app = FastAPI()
 
 app.mount("/static", StaticFiles(directory="./static"), name="static")
 
-templates = Jinja2Templates(directory="templates")
+templates = build_templates()
 
 @app.get("/")
 async def read_root(request: Request):
     return templates.TemplateResponse("home.html", {"request": request})
 
-@app.get("/basics")
-async def basics(request: Request):
-    return templates.TemplateResponse("basics.html", {"request": request})
-
-@app.get("/hello")
-async def hello_world(name: str = Query(..., min_length=1, max_length=50, description="Your name")):
-    return {"message": f"Hello, {name}!"}
-
+app.include_router(basics_router, prefix="/basics")
 app.include_router(sentiment_router, prefix="/sentiment")
 app.include_router(gpt4all_router, prefix="/gpt4all")
 app.include_router(wizard_lm_router, prefix="/wizard_lm")

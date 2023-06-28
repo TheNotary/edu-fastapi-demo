@@ -5,7 +5,11 @@
 <head>
     <title>{% block title %}{% endblock %}</title>
     <link rel="stylesheet" type="text/css" href="/static/styles.css">
-    <link rel="stylesheet" type="text/css" href="/static/{{ MODULE_NAME }}/custom.css">
+
+    {% if has_file('static/' + MODULE_NAME + '/custom.css') %}
+        <link rel="stylesheet" type="text/css" href="/static/{{ MODULE_NAME }}/custom.css">
+    {% endif %}
+
     {% block extra_css %}{% endblock %}
 </head>
 <body>
