@@ -1,19 +1,19 @@
-{% extends "_base.html" %}
+{% extends "layout/_base.html" %}
 
 {% block title %}
-Wizard LM
+Sentiment Analysis Via Huggingface
 {% endblock %}
 
 {% block content %}
 <section>
-  <h2>Submit your text to get more text.</h2>
+  <h2>Submit your text for sentiment analysis</h2>
   <form id="jsonForm">
       <label for="input_data">Text:</label>
-      <textarea id="input_data" name="input_data">Q: Name the planets in the solar system? A: </textarea>
+      <textarea id="input_data" name="input_data">hi there, you are not ugly.</textarea>
       <div>
           <input type="submit" value="Submit">
       </div>
   </form>
-  <pre id="result"></pre>
+  <div id="result"></div>
 </section>
 {% endblock %}

@@ -2,16 +2,18 @@ import os
 from fastapi.templating import Jinja2Templates
 from fastapi import APIRouter
 
-
 def has_file(filename):
     return os.path.isfile(os.path.join('./' + filename))
 
 def build_templates():
-    templates = Jinja2Templates(directory="templates")
+    templates = Jinja2Templates(directory=".")
     templates.env.globals['has_file'] = has_file
     return templates
 
-def build_templates_and_router():
+# This function just hides a bunch of boilerplate that emerges from FastAPI
+def build_templates_and_router(file_name):
     templates = build_templates()
     router = APIRouter()
-    return [templates, router]
+    module_name = os.path.basename(file_name).replace("_router.py", "")
+
+    return [templates, router, module_name]

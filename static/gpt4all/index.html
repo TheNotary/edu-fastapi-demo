@@ -1,4 +1,4 @@
-{% extends "_base.html" %}
+{% extends "layout/_base.html" %}
 
 {% block title %}
 Text Generation Via GPT4ALL
@@ -9,7 +9,7 @@ Text Generation Via GPT4ALL
   <h2>Submit your text for interacting with a chat agent</h2>
   <form id="jsonForm">
       <label for="input_data">Text:</label>
-      <textarea id="input_data" name="input_data">Please show me the html for an example website that uses an llm to write code via an API.</textarea>
+      <textarea id="input_data" name="input_data">Please show me the html for a website that uses an llm to write code via a web API. Write all of the code, don't use placeholders indicating where code goes.</textarea>
       <div>
           <input type="submit" value="Submit">
       </div>

@@ -20,7 +20,7 @@ templates = build_templates()
 
 @app.get("/")
 async def read_root(request: Request):
-    return templates.TemplateResponse("home.html", {"request": request})
+    return templates.TemplateResponse("layout/home.html", {"request": request})
 
 app.include_router(basics_router, prefix="/basics")
 app.include_router(sentiment_router, prefix="/sentiment")

@@ -2,21 +2,17 @@ from fastapi import APIRouter, Request
 from fastapi.templating import Jinja2Templates
 from pydantic import BaseModel, Field
 from llama_cpp import Llama
-
-import pdb
+from helpers.jinja_helpers import build_templates_and_router
 
 llm = None
-templates = Jinja2Templates(directory="templates")
-router = APIRouter()
+templates, router, module_name = build_templates_and_router(__file__)
 
 class InputData(BaseModel):
     input_data: str = Field(..., min_length=1, description="Input data must be at least 1 character long")
 
-
 @router.get("")
 async def wizard_lm(request: Request):
-    return templates.TemplateResponse("wizard_lm.html", {
-        "request": request })
+    return templates.TemplateResponse("static/" + module_name + "/index.html", {"request": request})
 
 @router.post("")
 async def wizard_lm(json: InputData):

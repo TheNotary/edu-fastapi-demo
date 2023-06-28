@@ -1,13 +1,14 @@
 from fastapi import Query, Request
 from pydantic import BaseModel, Field
 from helpers.jinja_helpers import build_templates_and_router
+import pdb
 
 # This is the controller for the 'basics' modules.  The basics module doesn't
 # really demo anything interesting about datascience, it's really just a
 # cheap hello world to FastAPI.
 
 llm = None
-templates, router = build_templates_and_router()
+templates, router, module_name = build_templates_and_router(__file__)
 
 # 1
 class InputData(BaseModel):
@@ -15,7 +16,8 @@ class InputData(BaseModel):
 # 2
 @router.get("")
 async def basics(request: Request):
-    return templates.TemplateResponse("basics.html", {"request": request})
+    # pdb.set_trace() # for debugging
+    return templates.TemplateResponse("static/" + module_name + "/index.html", {"request": request})
 # 3
 @router.get("/hello")
 async def hello_world(name: str = Query(..., min_length=1, max_length=50, description="Your name")):
