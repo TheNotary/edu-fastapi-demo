@@ -5,20 +5,20 @@ This is an education demo showing how to leverage various datascience projects. 
 
 ### File Structure
 
-This project contains demonstration code for various aspects of datascience.  To keep things from getting confusing, each concept is modularized; each concept gets it's own folder where *most* of the related code lives.  The below diagram shows the important files if you were concerned with how the 'basics' demo works (`/basics`).
+This project contains demonstration code for various aspects of datascience.  To keep things from getting confusing, each concept is modularized; each concept gets it's own folder where *most* of the related code lives.  The below diagram shows the important files if you were concerned with, say, how the 'basics' demo works (`/basics`).
 
 ```bash
 ├── static/basics/
 │      ├── sentiment_router.py # controller & misc. code for doing the demo
-│      ├── custom.css          # styling for the demo
-│      └── index.js            # javascript involved in the demo
+│      ├── index.html          # HTML code for the index page of the demo
+│      ├── custom.css          # any styling for the demo
+│      └── index.js            # any javascript involved in the demo
 │
-├── templates/
-│      ├── _base.html    # The template that all pages follow
-│      ├── _navbar.html  # The navbar for the site
-│      └── basics.html   # HTML code for the index page of the demo
+├── layout/
+│      ├── _base.html          # The template that all pages follow
+│      └── _navbar.html        # The navbar for the site
 │
-└── app.py               # Entrypoint for the program
+└── app.py                     # Entrypoint for the FastAPI app
 ```
 
 
@@ -34,7 +34,9 @@ pip install -r requirements.txt
 ```
 
 
-## Download any Models
+## Manually Download Models
+
+Some models download automatically at runtime, but some are loaded manually.
 
 ```
 wget https://huggingface.co/TheBloke/WizardLM-30B-Uncensored-GGML/resolve/main/wizardlm-30b-uncensored.ggmlv3.q6_K.bin
@@ -49,7 +51,7 @@ Run the server:
 uvicorn app:app --reload --host 192.168.1.28 --port 8000
 ```
 
-Invoke the app's endpoints:
+Invoke one of the app's endpoints over curl:
 ```
 $ MSG='This is a pretty neat FastAPI demo that uses an ML model to perform the task of sentiment analysis.'
 $ curl -XPOST -H "Content-Type: application/json" http://127.0.0.1:8000/ml \
@@ -58,7 +60,9 @@ $ curl -XPOST -H "Content-Type: application/json" http://127.0.0.1:8000/ml \
 ```
 
 
-## Docker stuff
+## Docker Stuff
+
+Note:  Not currently maintained due to how my current ML infrastructure is setup (windows machine =/).
 
 ```
 docker build . -t edu-fastapi-demo

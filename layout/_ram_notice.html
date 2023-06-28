@@ -1,0 +1,2 @@
+{% set ram_status_class = 'ram-good' if ram >= 64 else 'ram-bad' %}
+<span class="{{ ram_status_class }}">Your machine currently has {{ ram }}GB of ram.</span>

@@ -7,16 +7,14 @@ from pydantic import BaseModel, Field
 from helpers.jinja_helpers import build_templates
 
 # Module Controllers
-from static.sentiment.sentiment_router import router as sentiment_router
-from static.gpt4all.gpt4all_router import router as gpt4all_router
-from static.wizard_lm.wizard_lm_router import router as wizard_lm_router
-from static.basics.basics_router import router as basics_router
+from modules.sentiment.sentiment_router import router as sentiment_router
+from modules.gpt4all.gpt4all_router import router as gpt4all_router
+from modules.wizard_lm.wizard_lm_router import router as wizard_lm_router
+from modules.basics.basics_router import router as basics_router
 
 app = FastAPI()
-
-app.mount("/static", StaticFiles(directory="./static"), name="static")
-
 templates = build_templates()
+app.mount("/modules", StaticFiles(directory="./modules"), name="modules")
 
 @app.get("/")
 async def read_root(request: Request):

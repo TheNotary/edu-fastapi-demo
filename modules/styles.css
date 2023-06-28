@@ -35,3 +35,11 @@ nav ul li a.current {
 main {
   padding: 20px;
 }
+
+.ram-good {
+    color: green;
+}
+
+.ram-bad {
+    color: red;
+}

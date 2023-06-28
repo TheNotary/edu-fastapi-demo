@@ -17,7 +17,7 @@ class InputData(BaseModel):
 @router.get("")
 async def basics(request: Request):
     # pdb.set_trace() # for debugging
-    return templates.TemplateResponse("static/" + module_name + "/index.html", {"request": request})
+    return templates.TemplateResponse("modules/" + module_name + "/index.html", {"request": request})
 # 3
 @router.get("/hello")
 async def hello_world(name: str = Query(..., min_length=1, max_length=50, description="Your name")):

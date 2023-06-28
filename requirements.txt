@@ -7,3 +7,4 @@ uvicorn==0.21.1
 jinja2==3.1.2
 gpt4all==0.3.5
 llama-cpp-python==0.1.65
+psutil==5.9.5

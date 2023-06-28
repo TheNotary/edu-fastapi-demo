@@ -20,7 +20,7 @@ class InputData(BaseModel):
 
 @router.get("")
 async def sentiment(request: Request):
-    return templates.TemplateResponse("static/" + module_name + "/index.html", {"request": request})
+    return templates.TemplateResponse("modules/" + module_name + "/index.html", {"request": request})
 
 @router.post("")
 async def sentiment(json: InputData):

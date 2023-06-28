@@ -4,10 +4,10 @@
 <html>
 <head>
     <title>{% block title %}{% endblock %}</title>
-    <link rel="stylesheet" type="text/css" href="/static/styles.css">
+    <link rel="stylesheet" type="text/css" href="/modules/styles.css">
 
-    {% if has_file('static/' + MODULE_NAME + '/custom.css') %}
-        <link rel="stylesheet" type="text/css" href="/static/{{ MODULE_NAME }}/custom.css">
+    {% if has_file('modules/' + MODULE_NAME + '/custom.css') %}
+        <link rel="stylesheet" type="text/css" href="/modules/{{ MODULE_NAME }}/custom.css">
     {% endif %}
 
     {% block extra_css %}{% endblock %}
@@ -18,12 +18,13 @@
         {% include "layout/_navbar.html" %}
       </ul>
     </nav>
+    {% include "layout/_ram_notice.html" %}
     <main>
         {% block content %}{% endblock %}
     </main>
 </body>
 
-<script src="/static/{{ MODULE_NAME }}/index.js"></script>
+<script src="/modules/{{ MODULE_NAME }}/index.js"></script>
 <script>
   document.querySelectorAll('nav a').forEach(link => {
       if (link.href === window.location.href) {
@@ -32,5 +33,4 @@
   });
 </script>
 {% block extra_js %}{% endblock %}
-
 </html>
