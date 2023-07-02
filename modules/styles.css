@@ -36,10 +36,10 @@ main {
   padding: 20px;
 }
 
-.ram-good {
+span.ram-good {
     color: green;
 }
 
-.ram-bad {
+span.ram-bad {
     color: red;
 }

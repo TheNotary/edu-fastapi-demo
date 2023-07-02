@@ -1,4 +1,6 @@
 {% set MODULE_NAME = request.url.path.lstrip('/') %}
+{% set ram_status_class = 'ram-good' if ram >= 64 else 'ram-bad' %}
+{% set ram_status_disabler = '' if ram >= 64 else 'disabled' %}
 
 <!DOCTYPE html>
 <html>
