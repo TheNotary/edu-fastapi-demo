@@ -1,0 +1,19 @@
+{% extends "layout/_base.html" %}
+
+{% block title %}
+Speech T5
+{% endblock %}
+
+{% block content %}
+<section>
+  <h2>Click buttons to generate speech (on the server)</h2>
+  <form id="jsonForm">
+      <label for="input_data">Text:</label>
+      <textarea id="input_data" name="input_data">Q: Name the planets in the solar system? A: </textarea>
+      <div>
+          <input type="submit" value="Submit" {{ ram_status_disabler }}>
+      </div>
+  </form>
+  <pre id="result"></pre>
+</section>
+{% endblock %}
