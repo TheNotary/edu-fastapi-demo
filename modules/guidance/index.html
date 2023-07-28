@@ -6,10 +6,21 @@ Guidance
 
 {% block content %}
 <section>
-  <h2>Submit your code request and it will write it in a javascript function.</h2>
+  <h2>Discontinued - Submit your code request and it will write it in a javascript function.</h2>
+  <div>
+    I stopped work on this because my dev system doesn't quite have enough ram and Guidance doesn't seem to support quantization.
+  </div>
   <form id="jsonForm">
       <label for="input_data">Text:</label>
-      <textarea id="input_data" name="input_data">Please show me a javascript function that plots the line for a graph in a canvas element. An example input would be "y = 2x + 3"</textarea>
+      <textarea id="input_data" name="input_data">
+// The below code will
+// define a javascript function that plots the line for a graph in a canvas element.
+// An example input would be "y = 2x + 3" and the output should be a graph with the equation plotted on it.
+function plot(equationForLine) {
+  {{ '{{~gen' }} 'code' {{ '}}' }}
+}
+
+      </textarea>
       <div>
           <input type="submit" value="Submit">
       </div>

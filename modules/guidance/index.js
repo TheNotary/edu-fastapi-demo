@@ -3,7 +3,7 @@ document.getElementById('jsonForm').addEventListener('submit', function(e) {
 
   var input_data = document.getElementById('input_data').value;
 
-  fetch('/wizard_lm', {
+  fetch('/guidance', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'

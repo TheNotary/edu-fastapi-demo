@@ -24,6 +24,16 @@ This project contains demonstration code for various aspects of datascience.  To
 
 ## Setup for local development
 
+### OS Dependencies
+
+You need to install pytorch, and assuming you have a gaming GPU, you'll want CUDA support so you'll need CUDA 11.7 which is as of today the recommended version for doing ML stuff.
+
+- [install Cuda 11.7](https://developer.nvidia.com/cuda-11-7-0-download-archive?target_os=Windows&target_arch=x86_64&target_version=11&target_type=exe_network)
+- [install PyTorch](https://pytorch.org/get-started/locally/)
+
+
+### Python Dependencies
+
 ```
 python -m venv .env
 source .env/bin/activate
