@@ -36,15 +36,53 @@ async def starcoder_gptq(json: InputData):
 
     user_input = json.input_data # "Q: Name the planets in the solar system? A: "
 
-    user_input = '''
-// A javascript function
-function printHelloWorld() {
-    '''
+    starting_input = "A javascript function that prints hello world"
+    commentized_input = commentize_input(starting_input)
+    function_name = choose_function_name(commentized_input)
 
-    inputs = tokenizer(user_input, return_tensors="pt").to(model.device)
+    templated_input = f"""<fim_prefix>
+{commentized_input}
+function {function_name}() {{
+<fim_suffix>
+}}
+<fim_middle>
+"""
+
+    raw_output = perform_inferance(templated_input)
+    middle = extract_middle(raw_output)
+    pdb.set_trace()
+
+    formatted_code = format_code(templated_input, middle)
+    return formatted_code
+
+def perform_inferance(prompt):
+    inputs = tokenizer(prompt, return_tensors="pt").to(model.device)
     embedding = model.generate(**inputs,
-                             max_new_tokens=40,
-                             labels=["}"] )[0]
+                             max_new_tokens=40 )[0]
 
-    outputs = tokenizer.decode(embedding)
-    return outputs
+    return tokenizer.decode(embedding)
+
+def commentize_input(starting_input):
+    return f'// {starting_input}'
+
+def choose_function_name(commentized_input):
+    subpromt = f"""<fim_prefix>
+{commentized_input}
+function
+<fim_suffix>
+() {{
+<fim_middle>
+"""
+    inference = perform_inferance(subpromt)
+    middle = extract_middle(inference)
+    return "printHelloWorld"
+
+def extract_middle(raw_output):
+    try:
+        return raw_output.split('<fim_middle>\n')[1].split('<|endoftext|>')[0]
+    except IndexError:
+        return "Unable to find text between <fim_middle> and '<|endoftext|>' "
+
+def format_code(templated_input, middle):
+    return templated_input.replace("<fim_middle>", "").replace("<fim_prefix>", "").replace("<fim_suffix>", middle)
+
