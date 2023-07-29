@@ -1,4 +1,4 @@
-let endpoint = '/wizard_lm'
+let endpoint = '/starcoder_gptq'
 
 document.getElementById('jsonForm').addEventListener('submit', function(e) {
   e.preventDefault();

@@ -10,3 +10,4 @@ llama-cpp-python==0.1.65
 psutil==5.9.5
 datasets==2.13.1
 guidance==0.0.64
+auto-gptq==0.2.2
