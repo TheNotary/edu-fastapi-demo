@@ -35,10 +35,10 @@ You need to install pytorch, and assuming you have a gaming GPU, you'll want CUD
 ### Python Dependencies
 
 ```
-python -m venv .env
-source .env/bin/activate
+python -m venv .venv
+source .venv/bin/activate
 # For window use this instead :)
-# .\.env\Scripts\activate
+# .\.venv\Scripts\activate
 
 pip install -r requirements.txt
 ```
